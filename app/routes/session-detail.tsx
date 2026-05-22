@@ -17,7 +17,7 @@ export function meta({ data }: Route.MetaArgs) {
   ];
 }
 
-export function loader({ params }: Route.LoaderArgs) {
+export function clientLoader({ params }: Route.ClientLoaderArgs) {
   const session = sessions.find((s) => s.slug === params.sessionSlug);
   if (!session) throw new Response("Not Found", { status: 404 });
 

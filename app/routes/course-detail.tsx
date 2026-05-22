@@ -9,7 +9,7 @@ import CTASection from "~/components/CTASection";
 import { courses } from "~/data/courses";
 import { sessions } from "~/data/sessions";
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const course = courses.find((c) => c.slug === params.courseSlug);
   if (!course) {
     throw new Response("Course not found", { status: 404 });
@@ -38,7 +38,7 @@ const levelColors = {
 };
 
 export default function CourseDetail() {
-  const { course } = useLoaderData<typeof loader>();
+  const { course } = useLoaderData<typeof clientLoader>();
   const [openModule, setOpenModule] = useState<number | null>(0);
 
   const relatedSessions = sessions.filter((s) => s.courseId === course.id);
